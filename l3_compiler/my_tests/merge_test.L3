@@ -1,0 +1,5 @@
+define @main() {
+	%b <- %a
+	%c <- %b
+	return
+}

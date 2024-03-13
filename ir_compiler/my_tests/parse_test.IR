@@ -1,0 +1,62 @@
+define int64 @main() {
+	:block0
+	int64 %i
+	int64[] %arr
+	int64[][][] %mat
+	tuple %tup
+	code %fn_ptr
+	// code starts here
+	%fn_ptr <- @void_helper
+	%i <- 1
+	%arr <- new Array(3)
+	%mat <- new Array(5, 7, %i)
+	%tup <- new Tuple(9)
+	%i <- %arr[0]
+	%i <- %mat[0][%i][0]
+	%arr[0] <- 10
+	%mat[0][0][0] <- 100
+	%i <- length %arr 0
+	%i <- length %mat 1
+	%i <- length %tup
+	call %void_helper(%i)
+	%fn_ptr <- call @other_helper()
+	call print(%i)
+	call print(%arr)
+	%i <- call input()
+	br :block1
+
+	:block1
+	br 0 :block3 :block3
+
+	:block2
+	call tuple-error()
+	call tensor-error()
+	br %i :block1 :block2
+
+	:block3
+	return %i
+}
+
+define void @void_helper(int64[] %eyy, int64 %bee, code %see) {
+	:entry
+	%bee <- %bee
+	%bee <- 0 + %bee
+	%bee <- 0 - %bee
+	%bee <- 0 * %bee
+	%bee <- 0 & %bee
+	%bee <- 0 << %bee
+	%bee <- 0 >> %bee
+	%bee <- 0 < %bee
+	%bee <- 0 <= %bee
+	%bee <- 0 = %bee
+	%bee <- 0 >= %bee
+	%bee <- 0 > %bee
+	return
+}
+
+define code @other_helper() {
+	:entry
+	code %val
+	%val <- @other_helper
+	return %val
+}

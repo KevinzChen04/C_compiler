@@ -1,0 +1,3 @@
+#!/bin/bash
+
+../scripts/Lc L3 IR ../L3 L3c $@

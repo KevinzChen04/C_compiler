@@ -1,0 +1,111 @@
+define int64 @main() {
+	:entry
+	int64[] %array
+	%array <- call @read_numbers()
+	call @bubble_sort(%array)
+	call @print_on_separate_lines(%array)
+	call print(%array)
+	return 0
+}
+
+define void @bubble_sort(int64[] %arr) {
+	:entry
+	int64 %_
+	int64 %num
+	int64 %i
+	int64 %j
+	int64 %end
+	int64 %left_val
+	int64 %right_val
+	%end <- length %arr 0
+	%end <- %end >> 1
+	%end <- %end - 1
+	br :outer_condition
+
+	:outer_body
+	%i <- 0
+	br :inner_condition
+
+	:inner_body
+	%left_val <- %arr[%i]
+	%j <- %i + 1
+	%right_val <- %arr[%j]
+	%_ <- %left_val <= %right_val
+	br %_ :l1 :swap
+
+	:swap
+	%arr[%j] <- %left_val
+	%arr[%i] <- %right_val
+	br :l1
+
+	:l1
+	%i <- %j
+	br :inner_condition
+
+	:inner_condition
+	%_ <- %i < %end
+	br %_ :inner_body :l0
+
+	:l0
+	%end <- %end - 1
+	br :outer_condition
+
+	:outer_condition
+	%_ <- 0 < %end
+	br %_ :outer_body :conclusion
+
+	:conclusion
+	return
+}
+
+define void @print_on_separate_lines(int64[] %arr) {
+	:entry
+	int64 %_
+	int64 %i
+	int64 %len
+	int64 %num
+	%len <- length %arr 0
+	%len <- %len >> 1
+	%i <- 0
+	br :condition
+
+	:body
+	%num <- %arr[%i]
+	call print(%num)
+	%i <- %i + 1
+	br :condition
+
+	:condition
+	%_ <- %i < %len
+	br %_ :body :conclusion
+
+	:conclusion
+	return
+}
+
+define int64[] @read_numbers() {
+	:entry
+	int64 %_
+	int64[] %result
+	int64 %len
+	int64 %i
+	int64 %num
+	%len <- call input()
+	%result <- new Array(%len)
+	%len <- %len >> 1
+	%i <- 0
+	br :condition
+
+	:body
+	%num <- call input()
+	%result[%i] <- %num
+	%i <- %i + 1
+	br :condition
+
+	:condition
+	%_ <- %i < %len
+	br %_ :body :conclusion
+
+	:conclusion
+	return %result
+}

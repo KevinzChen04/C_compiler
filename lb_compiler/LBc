@@ -1,0 +1,3 @@
+#!/bin/bash
+
+../scripts/Lc a LB ../LA LAc $@

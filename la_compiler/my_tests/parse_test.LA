@@ -1,0 +1,44 @@
+void main() {
+	int64 var
+	int64[] arr
+	arr <- new Array(10)
+	int64[][][] mat
+	mat <- new Array(10, 10)
+	tuple tup
+	tup <- new Tuple(10)
+	code fun
+	:label
+	br :label
+	br 0 :label_0 :label_1
+	br var :label_0 :label_1
+	var <- -10
+	var <- arr[0]
+	var <- mat[0][var][2]
+	var <- tup[var]
+	var <- length tup
+	var <- length arr 0
+	var <- length arr var
+	arr[0] <- var
+	mat[0][var][2] <- -10
+	tup[10] <- 0
+	helper(var, arr, mat)
+	var <- helper(var, arr, mat)
+	input()
+	print(arr)
+	return
+}
+
+int64[][] helper(int64 a, int64[] b, tuple c) {
+	a <- b
+	a <- b + c
+	a <- b - c
+	a <- b * c
+	a <- b & c
+	a <- b << c
+	a <- b >> c
+	a <- b < c
+	a <- b <= c
+	a <- b = c
+	a <- b >= c
+	return c
+}

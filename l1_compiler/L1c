@@ -1,0 +1,24 @@
+#!/bin/bash
+
+CFLAGS="-no-pie"
+
+./bin/L1 -g 1 "$@"
+
+if test $? -ne 0 ; then
+  exit 1;
+fi
+
+if ! test -f prog.S ; then
+  exit 1;
+fi
+
+as -o prog.o prog.S
+if ! test -f prog.o ; then
+  exit 1;
+fi
+
+gcc ${CFLAGS} -O2 -c -g -o runtime.o ../lib/runtime.c
+
+gcc ${CFLAGS} -no-pie -o a.out prog.o runtime.o
+
+exit 0

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+../scripts/Lc L1 L2 ../L1 L1c $@

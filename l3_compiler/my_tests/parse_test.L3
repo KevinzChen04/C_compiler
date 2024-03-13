@@ -1,0 +1,35 @@
+define @main() {
+	%a <- %b
+	%c <- %d + %e
+	%c <- %d - %e
+	%c <- %d * %e
+	%c <- %d & %e
+	%c <- %d << %e
+	%c <- %d >> %e
+	%f <- %g < %h
+	%f <- %g <= %h
+	%f <- %g = %h
+	%f <- %g > %h
+	%f <- %g >= %h
+	%i <- load %j
+	store %k <- %l
+	%x <- :label
+	%y <- @fun_with_args
+	:label
+	br :label
+	br %_ :label
+	br 0 :label
+	call @fun_with_args(%a)
+	call print(%a)
+	%m <- %n
+	%dest <- call @fun_with_more_args(%a, %b, %c)
+	return
+}
+
+define @fun_with_args(%a) {
+	return 10
+}
+
+define @fun_with_more_args(%a, %b, %c) {
+	return %var
+}
